@@ -1,4 +1,4 @@
-class Linked_List[T](var length: Int = 0):
+class LinkedList[T](var length: Int = 0):
   private var head: Option[Node[T]] = None
   private var tail: Option[Node[T]] = None
 
@@ -97,10 +97,10 @@ class Linked_List[T](var length: Int = 0):
     if node.getNext.isDefined then
       node.getNext.get.setPrev(node.getPrev)
 
-    if this.head.isDefined && node.eq(this.head.get) then
+    if this.head.isDefined && node.getValue.equals(this.head.get.getValue) then
       this.head = node.getNext
 
-    if this.tail.isDefined && node.eq(this.tail.get) then
+    if this.tail.isDefined && node.getValue.equals(this.tail.get.getValue) then
       this.tail = node.getPrev
 
     node.setPrev(None)
@@ -113,11 +113,11 @@ class Linked_List[T](var length: Int = 0):
     var found = false
 
     while (curr.isDefined && !found)
-      if curr.get.equals(item) then
+      if curr.get.getValue.equals(item) then
         found = true
       else
         curr = curr.get.getNext
 
     (found, curr.get)
 
-end Linked_List
+end LinkedList
